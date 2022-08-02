@@ -95,10 +95,17 @@ app.post('/restaurants/:id/delete', (req, res) => {
 app.get('/search', (req, res) => {
   const input = req.query.keyword
   const keyword = input.trim().toLowerCase()
-  const restaurants = restaurantList.results.filter(restaurant =>
-    restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword)
-  )
-  res.render('index', { restaurants: restaurants, keyword: input })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      const searchList = restaurantList.results.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(keyword) ||
+          restaurant.name_en.includes(keyword) ||
+          restaurant.category.includes(keyword)
+      })
+      res.render('index', { restaurants: searchList, keyword: input })
+    })
+    .catch(error => console.log(error))
 })
 
 
