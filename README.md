@@ -5,14 +5,19 @@
 - 使用者可以看到目前所有的餐廳列表
 - 使用者可以看到餐廳的照片、名稱、分類及評分
 - 使用者可以點擊餐廳取得更詳細的資訊（地址、電話、描述、Google 地圖）
-- 使用者可以使用名稱及類別關鍵字搜尋特定餐廳
+- 使用者可以使用中文、英文名稱及類別關鍵字搜尋特定餐廳
+- 使用者可以新增餐廳清單
+- 使用者可以編輯特定的餐廳資料
+- 使用者可以刪除特定的餐廳清單
 
 ## Prerequisites
 - Node.js 16.15.1
-- Express 4.16.4
-- Express-Handlebars 3.0.0
+- Express 4.17.1
+- Express-Handlebars 4.0.2
 - Bootstrap 4.6.1
 - Font-awesome 5.8.1
+- mongoose 5.13.14
+- MongoDB
 
 ## Installing
 1. 打開終端機（terminal）並 Clone 專案至本機
@@ -27,7 +32,7 @@ $ git clone https://github.com/darrenjon/restaurant_list.git
 $ cd restaurant_list
 ```
 
-3. 安裝 npm 套件
+3. 安裝 npm 及專案所需的套件
 
 ```
 $ npm install
@@ -42,6 +47,7 @@ $ npm run dev
 5. 當 terminal 出現以下字樣，表示伺服器已啟動完成
 
 `The server is running on http://localhost:3000`
+`mongodb connected!`
 
 6. 打開瀏覽器網址列輸入 http://localhost:3000/
 可以看到本專案的網頁呈現
