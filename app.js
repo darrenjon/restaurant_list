@@ -78,11 +78,20 @@ app.post('/restaurants/:id/edit', (req, res) => {
       restaurant.description = body.description
       return restaurant.save()
     })
-    .then(() => res.redirect('/restaurants/${id}'))
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(err => console.log(err))
 })
 
+//add delete restaurant list
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
+//search restaurant list
 app.get('/search', (req, res) => {
   const input = req.query.keyword
   const keyword = input.trim().toLowerCase()
