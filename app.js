@@ -44,10 +44,13 @@ app.post('/restaurants', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// add read more details of restaurant
 app.get('/restaurants/:restaurantId', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id === Number(req.params.restaurantId))
-
-  res.render('show', { restaurant: restaurant })
+  const id = req.params.restaurantId
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(err => console.log(err))
 })
 
 app.get('/search', (req, res) => {
