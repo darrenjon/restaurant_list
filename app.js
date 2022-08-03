@@ -1,7 +1,6 @@
 // require packages used in the project
 const express = require('express')
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
@@ -98,7 +97,7 @@ app.get('/search', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => {
-      const searchList = restaurantList.results.filter(restaurant => {
+      const searchList = restaurants.filter(restaurant => {
         return restaurant.name.toLowerCase().includes(keyword) ||
           restaurant.name_en.includes(keyword) ||
           restaurant.category.includes(keyword)
