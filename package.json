@@ -12,6 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "standard": "^17.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.1",
