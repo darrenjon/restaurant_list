@@ -14,7 +14,7 @@
 - Node.js 16.15.1
 - Express 4.17.1
 - Express-Handlebars 4.0.2
-- Bootstrap 4.6.1
+- Bootstrap 4.6.2
 - Font-awesome 5.8.1
 - mongoose 5.13.14
 - MongoDB
