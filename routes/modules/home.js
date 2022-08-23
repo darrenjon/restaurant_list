@@ -4,10 +4,17 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
+  const sort = req.query.sort
+  const sortOption = {
+    aSort: { name: 'asc' },
+    zSort: { name: 'desc' },
+    category: { category: 'asc' },
+    location: { location: 'asc' },
+  }
   Restaurant.find()
     .lean()
-    .sort({ _id: 'asc' })
-    .then(restaurants => res.render('index', { restaurants }))
+    .sort(sortOption[sort])
+    .then(restaurants => res.render('index', { restaurants, sort }))
     .catch(error => console.log(error))
 })
 
