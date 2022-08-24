@@ -4,6 +4,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next()
     }
+    req.flash('warning_msg', 'Please Login! You need to login to access this page. Please enter your Email and Password and click Login.') 
     res.redirect('/users/login')
   }
 }
