@@ -10,6 +10,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body
+  body.userId = req.user._id
   return Restaurant.create(body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
@@ -17,8 +18,9 @@ router.post('/', (req, res) => {
 
 // add read more details of restaurant
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(err => console.log(err))
@@ -26,17 +28,19 @@ router.get('/:id', (req, res) => {
 
 // add edit function and page
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(err => console.log(err))
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const body = req.body
-  return Restaurant.findById(id)
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = body.name
       restaurant.name_en = body.name_en
@@ -49,14 +53,15 @@ router.put('/:id', (req, res) => {
       restaurant.description = body.description
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(err => console.log(err))
 })
 
 //add delete restaurant list
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
