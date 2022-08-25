@@ -1,8 +1,11 @@
 # My Restaurants (我的餐廳清單)
-這是一個使用 express 與 Node.js 打造的餐廳網頁，可以查看餐廳資料並且瀏覽詳細資訊。
+![Restaurant List](./public/restaurant-list.png)
+這是一個使用 Node.js + Express 打造的餐廳網頁，可以彙整自己喜歡的餐廳資料並且瀏覽詳細資訊。
 
 ## Features
-- 使用者可以看到目前所有的餐廳列表
+- 使用者可以註冊帳號或使用 Facebook Login 方式登入
+- 使用者登入後，可以建立並管理專屬的餐廳清單
+- 使用者可以瀏覽所有的餐廳列表
 - 使用者可以看到餐廳的照片、名稱、分類及評分
 - 使用者可以點擊餐廳取得更詳細的資訊（地址、電話、描述、Google 地圖）
 - 使用者可以使用中文、英文名稱及類別關鍵字搜尋特定餐廳
@@ -32,22 +35,34 @@ $ git clone https://github.com/darrenjon/restaurant_list.git
 $ cd restaurant_list
 ```
 
-3. 安裝 npm 及專案所需的套件
+3. 安裝 npm 及專案所需套件(dependencies)
 
 ```
 $ npm install
 ```
 
-4. 開啟伺服器，執行 app.js 檔案
+4. 依照.env.example 設定環境變數，並建立.env 檔
+
+```
+$ mkdir .env
+```
+
+5. 建立種子資料到資料庫中
+
+```
+$ npm run seed
+```
+
+6. 啟動伺服器
 
 ```
 $ npm run dev
 ```
 
-5. 當 terminal 出現以下字樣，表示伺服器已啟動完成
+7. 當 terminal 出現以下字樣，表示伺服器已啟動完成
 
 `The server is running on http://localhost:3000`
 `mongodb connected!`
 
-6. 打開瀏覽器網址列輸入 http://localhost:3000/
+8. 打開瀏覽器網址列輸入 http://localhost:3000/
 可以看到本專案的網頁呈現
