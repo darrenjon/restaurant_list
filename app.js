@@ -3,7 +3,7 @@ const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const methodOverride = require('method-override') 
+const methodOverride = require('method-override')
 const flash = require('connect-flash')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -42,7 +42,6 @@ app.use((req, res, next) => {
 })
 
 app.use(routes)
-
 
 // start and listen on the Express server
 app.listen(port, () => {

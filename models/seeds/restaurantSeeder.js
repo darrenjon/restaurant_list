@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -20,7 +19,7 @@ db.once('open', () => {
           User.create({
             name: seedUser.name,
             email: seedUser.email,
-            password: hash,
+            password: hash
           })
         )
         .then((user) => {

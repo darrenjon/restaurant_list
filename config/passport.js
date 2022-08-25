@@ -7,7 +7,7 @@ const User = require('../models/user')
 module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
-  //設定本地登入
+  // 設定本地登入
   passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
@@ -23,7 +23,7 @@ module.exports = app => {
       })
       .catch(err => done(err, false))
   }))
-  //Facebook login
+  // Facebook login
   passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
@@ -34,7 +34,7 @@ module.exports = app => {
     User.findOne({ email })
       .then(user => {
         if (user) return done(null, user)
-        //create a random password for Facebook login
+        // create a random password for Facebook login
         const randomPassword = Math.random().toString(36).slice(-8)
         bcrypt
           .genSalt(10)

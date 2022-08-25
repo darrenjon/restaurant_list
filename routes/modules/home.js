@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     aSort: { name: 'asc' },
     zSort: { name: 'desc' },
     category: { category: 'asc' },
-    location: { location: 'asc' },
+    location: { location: 'asc' }
   }
   Restaurant.find({ userId })
     .lean()
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//search restaurant list
+// search restaurant list
 router.get('/search', (req, res) => {
   const userId = req.user._id
   const input = req.query.keyword
